@@ -1,1 +1,11 @@
-<p>life-form works!</p>
+<p>{{ this.data.title }}</p>
+
+<div class="life-form">
+    <strong>Value1:</strong> {{ this.data.val1 }}<br>
+    <strong>Value2:</strong> {{ this.data.val2 }}<br>
+
+</div>
+
+<div>
+    <button class="btn float-right" mat-button (click)="onCloseClick()">X Close</button>
+</div>
