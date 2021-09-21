@@ -1,4 +1,4 @@
-<p>{{ this.data.title }}</p>
+<h1>{{ this.data.title }}</h1>
 
 <div class="life-form">
     <strong>Value1:</strong> {{ this.data.val1 }}<br>
@@ -6,6 +6,45 @@
 
 </div>
 
-<div>
-    <button class="btn float-right" mat-button (click)="onCloseClick()">X Close</button>
-</div>
+<form [formGroup]="LifeForm"  id='dynamic-form' autocomplete="off" novalidate fxLayout="column wrap"
+  fxLayoutAlign="center center" fxLayoutGap="10px">
+  <mat-dialog-content *ngIf="this.data.test === 'praplus'">
+    <div class='row'>
+        <div class='col-6 mt-3'>
+            <label>Rate your ability to carry out Physical Activities:</label><br />
+            <div>
+              <input maxlength='255' class='main-input' name="value1" formControlName="value1" />
+            </div>
+          </div>
+    </div>
+    <div class='row'>
+        <div class='col-6 mt-3'>
+            <label>Value2:</label><br />
+            <div>
+              <input maxlength='255' class='main-input' name="value2" formControlName="value2" />
+            </div>
+          </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-content *ngIf="this.data.test === 'promis'">
+
+  </mat-dialog-content>
+
+  <mat-dialog-content *ngIf="this.data.test === 'healthhistory'">
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="float-right">
+    <div>
+        <button class="btn" mat-button (click)="onCloseClick()">X Close</button>
+        <button class="btn" mat-button (click)="save()">
+         Save
+         <!-- <fa-icon [icon]="faSave"></fa-icon> -->
+        </button>
+        <button class="btn" mat-button (click)="complete()">Complete</button>
+    </div>
+  </mat-dialog-actions>
+
+</form>
+
