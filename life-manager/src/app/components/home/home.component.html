@@ -1,9 +1,12 @@
-<h1>Assessment Tests</h1>
+<h1>Life Manager Assessment Tests</h1>
 
 <div class="home-nav">
-    <div class="nav-row"><a (click)="openPraPlus($event);">PraPlus</a></div>
+    <div class="nav-row"><a (click)="openPraPlus($event);">PraPlus</a> 
+        <span class="small">{{ count }} question(s) completed out of {{ totalCount }}</span></div>
 
-    <div class="nav-row"><a (click)="openPromis($event);">Promis</a></div>
+    <div class="nav-row"><a (click)="openPromis($event);">Promis</a>
+        <span class="small">{{ count2 }} question(s) completed out of {{ totalCount }}</span></div>
 
-    <div class="nav-row"><a (click)="openHealthHistory($event);">Health History</a></div>
+    <div class="nav-row"><a (click)="openHealthHistory($event);">Health History</a>
+        <span class="small">{{ count3 }} question(s) completed out of {{ totalCount }}</span></div>
 </div>
