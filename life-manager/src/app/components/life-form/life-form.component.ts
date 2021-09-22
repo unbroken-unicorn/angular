@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
@@ -17,18 +17,18 @@ export class LifeFormComponent implements OnInit {
   public LifeForm!: FormGroup;
 
   constructor(
-    // private FormBuilder: FormBuilder,
+    private FormBuilder: FormBuilder,
     public dialogRef: MatDialogRef<LifeFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     dialogRef.disableClose = true;
-    // this.LifeForm = this.FormBuilder.group({
-    //   checkArray: this.FormBuilder.array([])
-    // })
+    this.LifeForm = this.FormBuilder.group({
+      checkArray: this.FormBuilder.array([])
+    })
   }
 
   ngOnInit(): void {
-    console.log('Data Values: ');
-    console.dir(this.data);
+
+    // FormGroup for form control
     this.LifeForm = new FormGroup({
       praplusDate: new FormControl(this.data.praplusDate, []),
       praplusQuest1: new FormControl(this.data.praplusQuest1, []),
@@ -50,9 +50,8 @@ export class LifeFormComponent implements OnInit {
       healthhistoryQuest3: new FormControl(this.data.healthhistoryQuest3, [])
     })
 
+    // Look for changes to the form by the user
     this.LifeForm.valueChanges.subscribe((formData: any) => { 
-      console.log('Form Value Change');
-      console.dir(formData);
       this.data.praplusDate = formData.praplusDate;
       this.data.praplusQuest1 = formData.praplusQuest1;
       this.data.praplusQuest2 = formData.praplusQuest2;
@@ -75,10 +74,12 @@ export class LifeFormComponent implements OnInit {
     
   }
 
+  // Close modal window
   onCloseClick(): void {
     this.dialogRef.close();
   }
 
+  // Add data to data array to send back to original component
   save() {
     this.dialogRef.close({
       mode: 'save',
@@ -105,10 +106,12 @@ export class LifeFormComponent implements OnInit {
     });
   }
 
+  // Add data to data array to send back to original, marks question as complete
   complete() {
     this.dialogRef.close({
       mode: 'complete',
       data: { 
+        testTitle: this.data.test,
         praplusDate: this.data.praplusDate, 
         praplusQuest1: this.data.praplusQuest1, 
         praplusQuest2: this.data.praplusQuest2, 
@@ -130,22 +133,5 @@ export class LifeFormComponent implements OnInit {
       }
     });
   }
-
-  // onCheckboxChange(e : any) {
-  //   const checkArray: FormArray = this.LifeForm.get('checkArray') as FormArray;
-  
-  //   if (e.target.checked) {
-  //     checkArray.push(new FormControl(e.target.value));
-  //   } else {
-  //     let i: number = 0;
-  //     checkArray.controls.forEach((ctrl: FormControl) => {
-  //       if (ctrl.value == e.target.value) {
-  //         checkArray.removeAt(i);
-  //         return;
-  //       }
-  //       i++;
-  //     });
-  //   }
-  // }
 
 }

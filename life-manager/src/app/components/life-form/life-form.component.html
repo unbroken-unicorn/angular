@@ -3,7 +3,8 @@
 
 <form [formGroup]="LifeForm"  id='dynamic-form' autocomplete="off" novalidate 
   fxLayoutAlign="center center" fxLayoutGap="10px">
-  
+
+  <!-- PraPlus assessment form -->
   <mat-dialog-content *ngIf="this.data.test === 'praplus'">
     <div class="row">
         <label><strong>Assessment Date:</strong></label><br />
@@ -67,9 +68,9 @@
             </div>
           </div>
     </div>
-
   </mat-dialog-content>
 
+    <!-- Promis assessment form -->
   <mat-dialog-content *ngIf="this.data.test === 'promis'">
     <div class="row">
         <label><strong>Assessment Date:</strong></label><br />
@@ -114,33 +115,16 @@
         <div class="col-10 mt-3">
             <label>3. Please check all those conditions for which you are currently receiving medical treatment</label><br />
         </div>
-        <div>
-            <input type="checkbox" id="breathing" name="promisQuest3C1" formControlName="promisQuest3C1" value="Breathing Problems">
-            <label for="breathing"> Breathing Problems</label><br>
-            <input type="checkbox" id="highbloodpressure" name="promisQuest3C2" formControlName="promisQuest3C2" value="High Blood Pressure">
-            <label for="highbloodpressure"> High Blood Pressure</label><br>
-            <input type="checkbox" id="heart" name="promisQuest3C3" formControlName="promisQuest3C3" value="Heart Problems">
-            <label for="heart"> Heart Problems</label><br>
-            <input type="checkbox" id="urinary" name="promisQuest3C4" formControlName="promisQuest3C4" value="Urinary Problems">
-            <label for="urinary"> Urinary Problems</label><br>
-            <input type="checkbox" id="mental" name="promisQuest3C5" formControlName="promisQuest3C5" value="Mental Problems">
-            <label for="mental"> Mental Problems</label><br>
-            <input type="checkbox" id="ankle" name="promisQuest3C6" formControlName="promisQuest3C6" value="Ankle Swelling">
-            <label for="ankle"> Ankle Swelling</label><br>
-            <input type="checkbox" id="cancer" name="promisQuest3C7" formControlName="promisQuest3C7" value="Cancer">
-            <label for="cancer"> Cancer</label>
-        </div>
-        <!-- <div *ngFor="let data of this.data.checkboxValues; let i=index">
+        <div *ngFor="let data of this.data.checkboxValues; let i=index">
             <label>
-              <input type="checkbox" [value]="data.value" (change)="onCheckboxChange($event)" />
-              {{data.name}}
+              <input type="checkbox" [formControlName]="data.field" checked [value]="data.value" />
+              {{ data.name }}
             </label>
-          </div> -->
-
+          </div>
     </div>
-
   </mat-dialog-content>
 
+    <!-- Health History assessment form -->
   <mat-dialog-content *ngIf="this.data.test === 'healthhistory'">
     <div class="row">
         <label><strong>Assessment Date:</strong></label><br />
@@ -182,6 +166,7 @@
     </div>
   </mat-dialog-content>
 
+    <!-- Form buttons -->
   <mat-dialog-actions class="float-right">
     <div>
         <button class="btn" mat-button (click)="onCloseClick()">X Close</button>
