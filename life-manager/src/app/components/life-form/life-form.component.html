@@ -117,12 +117,13 @@
         </div>
         <div *ngFor="let data of this.data.checkboxValues; let i=index">
             <label>
-              <input type="checkbox" [formControlName]="data.field" checked [value]="data.value" />
+              <input type="checkbox" [checked]="data.promisQuest3C1"  [value]="data.value"  />
               {{ data.name }}
             </label>
           </div>
     </div>
   </mat-dialog-content>
+  
 
     <!-- Health History assessment form -->
   <mat-dialog-content *ngIf="this.data.test === 'healthhistory'">
@@ -171,7 +172,7 @@
     <div>
         <button class="btn" mat-button (click)="onCloseClick()">X Close</button>
         <button class="btn" mat-button (click)="save()"> Save</button>
-        <button class="btn" mat-button (click)="complete()">Complete</button>
+        <button class="btn" mat-button (click)="complete()" [disabled]="this.data.count < 3">Complete</button>
     </div>
   </mat-dialog-actions>
 
