@@ -1,0 +1,179 @@
+<h1>{{ this.data.title }}</h1>
+
+
+<form [formGroup]="LifeForm"  id='dynamic-form' autocomplete="off" novalidate 
+  fxLayoutAlign="center center" fxLayoutGap="10px">
+
+  <!-- PraPlus assessment form -->
+  <mat-dialog-content *ngIf="this.data.test === 'praplus'">
+    <div class="row">
+        <label><strong>Assessment Date:</strong></label><br />
+        <mat-form-field appearance="fill">
+            <mat-label>Datepicker</mat-label>
+              <input matInput [matDatepicker]="praplusDate" formControlName="praplusDate">
+            <mat-datepicker-toggle matSuffix [for]="praplusDate"></mat-datepicker-toggle>
+            <mat-datepicker #praplusDate>
+            </mat-datepicker>
+          </mat-form-field><br />
+          <label><strong>Last Saved: </strong></label> <span class="padding-left">{{ this.data.praplusDate | date }}</span>
+    </div>
+    <div class="row">
+        <div class="col-10 mt-3">
+            <label>1. Rate your ability to carry out Physical Activities:</label><br />
+            <div>
+              <input type="radio" id="1" class='main-input' name="praplusQuest1" formControlName="praplusQuest1" value="1">
+              <label class="padding" for="1"> 1</label>
+              <input type="radio" id="2" class='main-input' name="praplusQuest1" formControlName="praplusQuest1" value="2">
+              <label class="padding" for="2"> 2</label>
+              <input type="radio" id="3" class='main-input' name="praplusQuest1" formControlName="praplusQuest1" value="3">
+              <label class="padding" for="3"> 3</label>
+              <input type="radio" id="4" class='main-input' name="praplusQuest1" formControlName="praplusQuest1" value="4">
+              <label class="padding" for="4"> 4</label>
+              <input type="radio" id="5" class='main-input' name="praplusQuest1" formControlName="praplusQuest1" value="5">
+              <label class="padding" for="5"> 5</label>
+            </div>
+          </div>
+    </div>
+    <div class="row">
+        <div class="col-10 mt-3">
+            <label>2. Rate your Daily Pain:</label><br />
+            <div>
+              <input type="radio" id="1" class='main-input' name="praplusQuest2" formControlName="praplusQuest2" value="1">
+              <label class="padding" for="1">1</label>
+              <input type="radio" id="2" class='main-input' name="praplusQuest2" formControlName="praplusQuest2" value="2">
+              <label class="padding" for="2">2</label>
+              <input type="radio" id="3" class='main-input' name="praplusQuest2" formControlName="praplusQuest2" value="3">
+              <label class="padding" for="3">3</label>
+              <input type="radio" id="4" class='main-input' name="praplusQuest2" formControlName="praplusQuest2" value="4">
+              <label class="padding" for="4">4</label>
+              <input type="radio" id="5" class='main-input' name="praplusQuest2" formControlName="praplusQuest2" value="5">
+              <label class="padding" for="5">5</label>
+            </div>
+          </div>
+    </div>
+    <div class="row">
+        <div class="col-10 mt-3">
+            <label>3. Rate your Overall Health:</label><br />
+            <div>
+              <input type="radio" id="1" class='main-input' name="praplusQuest3" formControlName="praplusQuest3" value="1">
+              <label class="padding" for="1">1</label>
+              <input type="radio" id="2" class='main-input' name="praplusQuest3" formControlName="praplusQuest3" value="2">
+              <label class="padding" for="2">2</label>
+              <input type="radio" id="3" class='main-input' name="praplusQuest3" formControlName="praplusQuest3" value="3">
+              <label class="padding" for="3">3</label>
+              <input type="radio" id="4" class='main-input' name="praplusQuest3" formControlName="praplusQuest3" value="4">
+              <label class="padding" for="4">4</label>
+              <input type="radio" id="5" class='main-input' name="praplusQuest3" formControlName="praplusQuest3" value="5">
+              <label class="padding" for="5">5</label>
+            </div>
+          </div>
+    </div>
+  </mat-dialog-content>
+
+    <!-- Promis assessment form -->
+  <mat-dialog-content *ngIf="this.data.test === 'promis'">
+    <div class="row">
+        <label><strong>Assessment Date:</strong></label><br />
+        <mat-form-field appearance="fill">
+            <mat-label>Datepicker</mat-label>
+              <input matInput [matDatepicker]="promisDate" formControlName="promisDate">
+            <mat-datepicker-toggle matSuffix [for]="promisDate"></mat-datepicker-toggle>
+            <mat-datepicker #promisDate>
+            </mat-datepicker>
+          </mat-form-field><br />
+          <label><strong>Last Saved: </strong></label> <span class="padding-left">{{ this.data.promisDate | date }}</span>
+    </div>
+    <div class="row">
+        <div class="col-10 mt-3">
+            <label>1. In the previous 12 months, have you stayed overnight as a patient in a hospital?</label><br />
+            <div>
+              <input type="radio" id="never" class='main-input' name="promisQuest1" formControlName="promisQuest1" value="Never">
+              <label class="padding" for="never">Never</label>
+              <input type="radio" id="once" class='main-input' name="promisQuest1" formControlName="promisQuest1" value="Once">
+              <label class="padding" for="once">Once</label>
+              <input type="radio" id="twice" class='main-input' name="promisQuest1" formControlName="promisQuest1" value="Twice">
+              <label class="padding" for="twice">Twice</label>
+              <input type="radio" id="radio" class='main-input' name="promisQuest1" formControlName="promisQuest1" value="Three">
+              <label class="padding" for="three">Three or More Times</label>
+            </div>
+          </div>
+    </div>
+    <div class="row">
+        <div class="col-10 mt-3">
+            <label>2. Have you ever had heart disease?</label><br />
+            <div>
+              <input type="radio" id="yes" class='main-input' name="promisQuest2" formControlName="promisQuest2" value="Yes">
+              <label class="padding" for="yes">Yes</label>
+              <input type="radio" id="no" class='main-input' name="promisQuest2" formControlName="promisQuest2" value="No">
+              <label class="padding" for="no">No</label>
+              <input type="radio" id="dontknow" class='main-input' name="promisQuest2" formControlName="promisQuest2" value="Don't Know">
+              <label class="padding" for="dontknow">Don't Know</label>
+            </div>
+          </div>
+    </div>
+    <div class="row">
+        <div class="col-10 mt-3">
+            <label>3. Please check all those conditions for which you are currently receiving medical treatment</label><br />
+        </div>
+        <div *ngFor="let data of this.data.checkboxValues; let i=index">
+            <label>
+              <input type="checkbox" [formControlName]="data.field" checked [value]="data.value" />
+              {{ data.name }}
+            </label>
+          </div>
+    </div>
+  </mat-dialog-content>
+
+    <!-- Health History assessment form -->
+  <mat-dialog-content *ngIf="this.data.test === 'healthhistory'">
+    <div class="row">
+        <label><strong>Assessment Date:</strong></label><br />
+        <mat-form-field appearance="fill">
+            <mat-label>Datepicker</mat-label>
+              <input matInput [matDatepicker]="healthhistoryDate" formControlName="healthhistoryDate">
+            <mat-datepicker-toggle matSuffix [for]="healthhistoryDate"></mat-datepicker-toggle>
+            <mat-datepicker #healthhistoryDate>
+            </mat-datepicker>
+          </mat-form-field><br />
+          <label><strong>Last Saved: </strong></label> <span class="padding-left">{{ this.data.healthhistoryDate | date }}</span>
+    </div>
+    <div class="row">
+        <div class="col-10 mt-3">
+            <label>1. Please describe any current diagnosis: </label><br />
+            <div>
+              <textarea id="healthhistoryQuest1" name="healthhistoryQuest1" rows="4" cols="50" formControlName="healthhistoryQuest1" >
+                </textarea>
+            </div>
+          </div>
+    </div>
+    <div class="row">
+        <div class="col-10 mt-3">
+            <label>2. Please describe any hospitalizations within the last 5 years: </label><br />
+            <div>
+              <textarea id="healthhistoryQuest2" name="healthhistoryQuest2" rows="4" cols="50" formControlName="healthhistoryQuest2">
+                </textarea>
+            </div>
+          </div>
+    </div>
+    <div class="row">
+        <div class="col-10 mt-3">
+            <label>3. Please describe your health habits: </label><br />
+            <div>
+              <textarea id="healthhistoryQuest3" name="healthhistoryQuest3" rows="4" cols="50" formControlName="healthhistoryQuest3">
+                </textarea>
+            </div>
+          </div>
+    </div>
+  </mat-dialog-content>
+
+    <!-- Form buttons -->
+  <mat-dialog-actions class="float-right">
+    <div>
+        <button class="btn" mat-button (click)="onCloseClick()">X Close</button>
+        <button class="btn" mat-button (click)="save()"> Save</button>
+        <button class="btn" mat-button (click)="complete()">Complete</button>
+    </div>
+  </mat-dialog-actions>
+
+</form>
+
