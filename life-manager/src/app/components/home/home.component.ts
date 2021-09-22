@@ -10,12 +10,14 @@ import { LifeFormComponent } from '../life-form/life-form.component';
 export class HomeComponent implements OnInit {
   
   praplusTestCompleted: any;
+  praplusTestCompletedDate: any;
   praplusDate: any;
   praplusQuest1: any;
   praplusQuest2: any;
   praplusQuest3: any;
 
   promisTestCompleted: any;
+  promisTestCompletedDate: any;
   promisQuest1: any;
   promisQuest2: any;
   promisQuest3C1: any;
@@ -27,6 +29,7 @@ export class HomeComponent implements OnInit {
   promisQuest3C7: any;
 
   healthhistoryTestCompleted: any;
+  healthhistoryTestCompletedDate: any;
   healthhistoryQuest1: any;
   healthhistoryQuest2: any;
   healthhistoryQuest3: any;
@@ -43,11 +46,13 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     // Retrieve items from localStorage to get questions completed count
     this.praplusTestCompleted = localStorage.getItem('praplusTestCompleted');
+    this.praplusTestCompletedDate = localStorage.getItem('praplusTestCompletedDate');
     this.praplusQuest1 = localStorage.getItem('praplusQuest1');
     this.praplusQuest2 = localStorage.getItem('praplusQuest2');
     this.praplusQuest3 = localStorage.getItem('praplusQuest3');
 
     this.promisTestCompleted = localStorage.getItem('promisTestCompleted');
+    this.promisTestCompletedDate = localStorage.getItem('promisTestCompletedDate');
     this.promisQuest1 = localStorage.getItem('promisQuest1');
     this.promisQuest2 = localStorage.getItem('promisQuest2');
     this.promisQuest3C1 = localStorage.getItem('promisQuest3C1');
@@ -59,6 +64,7 @@ export class HomeComponent implements OnInit {
     this.promisQuest3C7 = localStorage.getItem('promisQuest3C7');
 
     this.healthhistoryTestCompleted = localStorage.getItem('healthhistoryTestCompleted');
+    this.healthhistoryTestCompletedDate = localStorage.getItem('healthhistoryTestCompletedDate');
     this.healthhistoryQuest1 = localStorage.getItem('healthhistoryQuest1');
     this.healthhistoryQuest2 = localStorage.getItem('healthhistoryQuest2');
     this.healthhistoryQuest3 = localStorage.getItem('healthhistoryQuest3');
@@ -105,6 +111,7 @@ export class HomeComponent implements OnInit {
       data: {
         title: "PraPlus Assessment Test",
         test: 'praplus',
+        count: this.count,
         praplusDate: localStorage.getItem('praplusDate'),
         praplusQuest1: localStorage.getItem('praplusQuest1'),
         praplusQuest2: localStorage.getItem('praplusQuest2'),
@@ -125,6 +132,8 @@ export class HomeComponent implements OnInit {
         // If completed checked, question marked as complete
         if (result.mode === 'complete') {
           localStorage.setItem('praplusTestCompleted', "true");
+          let date = new Date().toISOString().slice(0,10); 
+          localStorage.setItem('praplusTestCompletedDate', date);
         }
 
         // Reload calling window
@@ -143,14 +152,15 @@ export class HomeComponent implements OnInit {
       data: {
         title: "Promis Assessment Test",
         test: 'promis',
+        count: this.count2,
         checkboxValues: [
-          { name: 'Breathing Problems', value: 'Breathing Problems', field: 'promisQuest3C1' },
-          { name: 'High Blood Pressure', value: 'High Blood Pressure', field: 'promisQuest3C2' },
-          { name: 'Heart Problems', value: 'Heart Problems', field: 'promisQuest3C3' },
-          { name: 'Urinary Problems', value: 'Urinary Problems', field: 'promisQuest3C4' },
-          { name: 'Mental Problems', value: 'Mental Problems', field: 'promisQuest3C5' },
-          { name: 'Ankle Swelling', value: 'Ankle Swelling', field: 'promisQuest3C6' },
-          { name: 'Cancer', value: 'Cancer', field: 'promisQuest3C7' }
+          { name: 'Breathing Problems', value: 'Breathing Problems', field: 'data.promisQuest3C1' },
+          { name: 'High Blood Pressure', value: 'High Blood Pressure', field: 'data.promisQuest3C2' },
+          { name: 'Heart Problems', value: 'Heart Problems', field: 'data.promisQuest3C3' },
+          { name: 'Urinary Problems', value: 'Urinary Problems', field: 'data.promisQuest3C4' },
+          { name: 'Mental Problems', value: 'Mental Problems', field: 'data.promisQuest3C5' },
+          { name: 'Ankle Swelling', value: 'Ankle Swelling', field: 'data.promisQuest3C6' },
+          { name: 'Cancer', value: 'Cancer', field: 'data.promisQuest3C7' }
       ],
         promisDate: localStorage.getItem('promisDate'),
         promisQuest1: localStorage.getItem('promisQuest1'),
@@ -166,12 +176,18 @@ export class HomeComponent implements OnInit {
       },
     };
 
+    console.log("Promis Info: ");
+    console.dir(info);
+
     // Open modal
     const dialogRef = this.dialog.open(LifeFormComponent, info);
 
     // After modal closed, save data to localStorage
     dialogRef.afterClosed().subscribe(result => {
       if (result) { 
+        console.log("Promis Results After Save/Complete: ");
+        console.dir(result);
+
         localStorage.setItem('promisDate', result.data.promisDate);
         localStorage.setItem('promisQuest1', result.data.promisQuest1);
         localStorage.setItem('promisQuest2', result.data.promisQuest2);
@@ -186,10 +202,12 @@ export class HomeComponent implements OnInit {
         // If completed checked, question marked as complete
         if (result.mode === 'complete') {
           localStorage.setItem('promisTestCompleted', "true");
+          let date = new Date().toISOString().slice(0,10); 
+          localStorage.setItem('promisTestCompletedDate', date);
         }
 
         // Reload calling window
-        window.location.reload();
+        //window.location.reload();
       }
     })
   }
@@ -204,6 +222,7 @@ export class HomeComponent implements OnInit {
       data: {
         title: "Health History Assessment Test",
         test: 'healthhistory',
+        count: this.count3,
         healthhistoryDate: localStorage.getItem('healthhistoryDate'),
         healthhistoryQuest1: localStorage.getItem('healthhistoryQuest1'),
         healthhistoryQuest2: localStorage.getItem('healthhistoryQuest2'),
@@ -225,6 +244,8 @@ export class HomeComponent implements OnInit {
         // If completed checked, question marked as complete
         if (result.mode === 'complete') {
           localStorage.setItem('healthhistoryTestCompleted', "true");
+          let date = new Date().toISOString().slice(0,10); 
+          localStorage.setItem('healthhistoryTestCompletedDate', date);
         }
 
         // Reload calling window
